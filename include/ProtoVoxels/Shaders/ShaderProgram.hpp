@@ -7,13 +7,13 @@ namespace ProtoVoxels::Shaders
 {
     class ShaderProgram {
     public:
-        ShaderProgram() = delete;
+        ShaderProgram();
         ShaderProgram(Shader<gl::GL_VERTEX_SHADER> vert_shader, Shader<gl::GL_FRAGMENT_SHADER> frag_shader,
                       bool linkNow = true);
         void use() const;
         ShaderProgram& link();
 
     private:
-        gl::GLuint m_Program;
+        gl::GLuint m_Program = -1;
     };
 }

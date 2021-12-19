@@ -4,6 +4,7 @@ project(ProtoVoxels)
 set(CMAKE_CXX_STANDARD 17)
 
 add_subdirectory(nall)
+add_subdirectory(entt)
 
 find_package(OpenGL REQUIRED)
 find_package(glbinding REQUIRED)
@@ -18,7 +19,10 @@ add_library(ProtoVoxels SHARED
         src/ProtoVoxels/Logger/Logger.cpp include/ProtoVoxels/Logger/Logger.hpp
 )
 
-target_include_directories(ProtoVoxels PRIVATE include)
+target_include_directories(ProtoVoxels PRIVATE
+        include
+        entt/single_include
+)
 
 add_executable(ProtoVoxelsTest WIN32
         src/main.cpp
@@ -26,3 +30,4 @@ add_executable(ProtoVoxelsTest WIN32
 
 target_link_libraries(ProtoVoxels PRIVATE glbinding::glbinding OpenGL::GL SDL2::SDL2 nall)
 target_link_libraries(ProtoVoxelsTest PRIVATE ProtoVoxels nall)
+target_include_directories(ProtoVoxelsTest PRIVATE include)

@@ -12,4 +12,3 @@
 
 #include "ProtoVoxels/shaders/Shader.hpp"
 #include "ProtoVoxels/shaders/ShaderProgram.hpp"
-#include "ProtoVoxels/shaders/Shaders.hpp"

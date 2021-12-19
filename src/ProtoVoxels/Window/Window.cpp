@@ -1,8 +1,11 @@
-#include "include/ProtoVoxels/window/Window.hpp"
+#include <ProtoVoxels/Window/Window.hpp>
+#include <glbinding/glbinding.h>
 
-namespace ProtoVoxel {
+namespace ProtoVoxels::Window {
     Window::Window(int w, int h) {
         SDL_Init(SDL_INIT_VIDEO);
+
+        glbinding::initialize([](const char * name) { return (glbinding::ProcAddress)SDL_GL_GetProcAddress(name); }, false);
 
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_FLAGS, 0);
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
@@ -13,7 +16,7 @@ namespace ProtoVoxel {
         SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
         SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
 
-        this->m_Window = SDL_CreateWindow("VoxelShit", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, w, h,
+        this->m_Window = SDL_CreateWindow("ProtoVoxels", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, w, h,
                                               SDL_WINDOW_OPENGL);
         this->m_Gl_ctx = SDL_GL_CreateContext(this->m_Window);
 
